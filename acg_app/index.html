@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACG大全 - 您的動漫資訊中心</title>
+    <style>
+        :root {
+            --primary: #6a5acd;
+            --secondary: #9370db;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin-right: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 1rem auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list {
+            list-style-position: inside;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .future-plans {
+            padding: 4rem 0;
+            background-color: #f0f2ff;
+            text-align: center;
+        }
+        
+        .future-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="../img/icon.png" alt="ACG大全 App 圖標" class="logo">
+                <h1>ACG大全</h1>
+            </div>
+            <p>您的ACG資訊一站式查詢平台</p>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>探索動漫世界的最佳嚮導</h1>
+            <p>ACG大全為動畫、漫畫、輕小說愛好者打造的免費資訊中心，無廣告、無付費，只為提供最完整的ACG資訊查詢服務。</p>
+            <a href="https://discord.com/channels/1340690620506964080/1352439850271506472" class="cta-button">立即下載(Pre-Alpha版本)</a>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">豐富功能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📺</div>
+                    <h3 class="feature-title">動畫資訊</h3>
+                    <ul class="feature-list">
+                        <li>動畫名稱、日文名稱與原作資訊</li>
+                        <li>製作廠商與代理商詳細資料</li>
+                        <li>每季發布日期與集數資訊</li>
+                        <li>主要製作人員與配音陣容</li>
+                        <li>OP/ED 曲目與觀看平台連結</li>
+                        <li>官方網站與社群媒體連結</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">輕小說資訊</h3>
+                    <ul class="feature-list">
+                        <li>書名、作者與插畫師資料</li>
+                        <li>台版與日版出版日期</li>
+                        <li>出版社詳細資訊</li>
+                        <li>動畫化相關消息</li>
+                        <li>實體書與電子書購買連結</li>
+                        <li>作品簡介與封面圖片</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖌️</div>
+                    <h3 class="feature-title">漫畫資訊</h3>
+                    <ul class="feature-list">
+                        <li>漫畫名稱與作者資訊</li>
+                        <li>台版與日版出版資料</li>
+                        <li>連載狀態與出版社資訊</li>
+                        <li>動畫化相關消息</li>
+                        <li>購買平台與官方連結</li>
+                        <li>作品簡介與封面插圖</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="future-plans">
+        <div class="container">
+            <h2 class="section-title">未來計畫</h2>
+            <div class="future-content">
+                <p>ACG大全將持續進化，未來我計劃加入更多功能與資料類型，包括：</p>
+                <br>
+                <ul class="feature-list">
+                    <li>更全面的角色與聲優資料庫</li>
+                    <li>更精準的作品推薦系統</li>
+                    <li>用戶收藏與追蹤功能</li>
+                    <li>更多周邊商品資訊</li>
+                </ul>
+                <br>
+                <p>我誠摯邀請您參與App測試或加入Discord社群，協助我將這個專案變得更好！</p>
+                <br>
+                <a href="https://discord.gg/QrXeUzU99H" class="cta-button">加入社群</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>ACG大全 - 免費、無廣告、專為ACG愛好者打造</p>
+            <div class="social-links">
+                <a href="https://discord.gg/QrXeUzU99H">Discord</a>
+                <a href="https://github.com/Coffeecat2006/acg_app">GitHub</a>
+            </div>
+            <p style="margin-top: 20px;">&copy; 2025 ACG大全 All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
