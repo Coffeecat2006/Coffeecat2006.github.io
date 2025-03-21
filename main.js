@@ -13,6 +13,7 @@ const langPack = {
       },
       about: {
         title: "關於我",
+        about_me: "我是一名熱愛技術的全端開發者，專注於創建優質的網路應用程式。擅長運用現代化的開發工具與框架，為用戶打造最佳的使用體驗。",
         education: "目前就讀鳳新高中",
         skills: "專業技能：寫程式 (C, C++, Python, Node.js, JavaScript, HTML, CSS)，Git，正在學習畫畫和日文，UI/UX",
         hobbies: "個人興趣：寫程式、畫畫、玩遊戲 (Minecraft, 崩壞星宆鐵道)",
@@ -44,6 +45,7 @@ const langPack = {
       },
       about: {
         title: "About Me",
+        about_me: "I am a full stack developer who loves technology and focuses on creating high-quality web applications. I am good at using modern development tools and frameworks to create the best user experience.",
         education: "Currently studying at Fengxin High School",
         skills: "Technical Skills: Programming (C, C++, Python, Node.js, JavaScript, HTML, CSS), Git; currently learning drawing and Japanese, UI/UX",
         hobbies: "Interests: Programming, Drawing, Gaming (Minecraft, Honkai Star Rail)",
@@ -81,6 +83,7 @@ const langPack = {
     // 更新 About 區塊（使用 innerHTML 支持 <br> 標籤）
     document.getElementById("about-title").textContent = pack.about.title;
     document.getElementById("about-content").innerHTML = `
+      <p><strong>關於我： / About me：</strong> ${pack.about.about_me}</p>
       <p><strong>學歷 / Education：</strong> ${pack.about.education}</p>
       <p><strong>專業技能 / Technical Skills：</strong> ${pack.about.skills}</p>
       <p><strong>個人興趣 / Interests：</strong> ${pack.about.hobbies}</p>
