@@ -4,21 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coffeecat's Portfolio</title>
-  <!-- Font Awesome CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
-  <!-- 引入外部 CSS -->
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="avatar.jpg" sizes="16x16">
+  <link rel="apple-touch-icon" href="avatar.jpg" sizes="180x180">
 </head>
 <body>
-  <!-- Header 區塊 -->
   <header class="header">
     <div class="container header-content">
-      <!-- 先行放置圖片連結，之後可更新 -->
       <img src="avatar.jpg" alt="Profile" class="profile-img">
       <h1 id="header-title">Coffeecat</h1>
       <p id="header-subtitle">全端開發者</p>
     </div>
-    <!-- 語系切換下拉選單 -->
     <div class="language-switcher">
       <select id="language-selector">
         <option value="zh-TW">繁體中文</option>
@@ -27,7 +24,6 @@
     </div>
   </header>
 
-  <!-- Navigation 導覽列 -->
   <nav class="nav">
     <div class="container">
       <ul class="nav-list">
@@ -39,14 +35,11 @@
     </div>
   </nav>
 
-  <!-- Main 主要內容 -->
   <main>
-    <!-- 「關於我」頁面 -->
     <section id="about" class="section">
       <div class="container">
         <h2 class="section-title" id="about-title">關於我</h2>
         <div class="fade-in" id="about-content">
-          <!-- 內容會由語言包動態填入 -->
           <p><strong>關於我：</strong>我是一名熱愛技術的全端開發者，專注於創建優質的網路應用程式。擅長運用現代化的開發工具與框架，為用戶打造最佳的使用體驗。</p>
           <p><strong>學歷：</strong>目前就讀鳳新高中</p>
           <p><strong>專業技能：</strong>寫程式 (C, C++, Python, Node.js, JavaScript, HTML, CSS)，Git，正在學習畫畫和日文，UI/UX</p>
@@ -63,7 +56,6 @@
       </div>
     </section>
 
-    <!-- 「作品集」頁面 -->
     <section id="projects" class="section">
       <div class="container">
         <h2 class="section-title" id="projects-title">作品集</h2>
@@ -75,13 +67,18 @@
               <p>目前正在開發中的 App，提供 ACG 相關資訊與內容</p>
               <a href="https://coffeecat2006.me/acg_app" class="project-link">查看詳情</a>
             </div>
-          </div>A
-          <!-- 可依需求增加其他專案卡片 -->
+          </div>
+          <div class="project-card">
+            <img src="/img/logo.png" alt="Project 2" class="project-image">
+            <div class="project-content">
+              <h3 class="project-title">個人工作室 - CoffeeCatStudio</h3>
+              <p>我自己的個人工作室，裡面展示我的其他作品</p>
+              <a href="https://coffeecat2006.me/coffeecatstudio" class="project-link">查看詳情</a>
+            </div>
         </div>
       </div>
     </section>
 
-    <!-- 「技能」頁面 -->
     <section id="skills" class="section">
       <div class="container">
         <h2 class="section-title" id="skills-title">技能</h2>
@@ -91,7 +88,6 @@
             <h3>JavaScript</h3>
           </div>
           <div class="skill-card">
-            <!-- 這裡以 Font Awesome 的其他圖示代替 C/C++，或自行引入合適圖示 -->
             <i class="fab fa-cuttlefish skill-icon"></i>
             <h3>C/C++</h3>
           </div>
@@ -115,12 +111,10 @@
             <i class="fab fa-git-alt skill-icon"></i>
             <h3>Git</h3>
           </div>
-          <!-- 更多技能卡片可加入 -->
         </div>
       </div>
     </section>
 
-    <!-- 「聯絡我」頁面 -->
     <section id="contact" class="section">
       <div class="container">
         <h2 class="section-title" id="contact-title">聯絡我</h2>
@@ -137,13 +131,12 @@
             <label class="form-label">訊息</label>
             <textarea class="form-input" rows="5" required></textarea>
           </div>
-          <button type="submit" class="submit-button">送出</button>
+          <button type="submit" class="submit-button">送出(目前收不到)</button>
         </form>
       </div>
     </section>
   </main>
 
-  <!-- Footer 區塊 -->
   <footer class="footer">
     <div class="container">
       <div class="social-links">
@@ -161,7 +154,6 @@
     </div>
   </footer>
 
-  <!-- 引入外部 JavaScript -->
   <script src="main.js"></script>
 </body>
 </html>

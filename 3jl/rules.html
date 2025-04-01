@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>伺服器規則 - 3JL Minecraft 伺服器</title>
+  <link rel="icon" type="image/png" href="../img/3JL.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../img/3JL.png" sizes="180x180">
+  <style>
+    :root {
+      --primary: #2E7D32;
+      --accent: #8BC34A;
+      --light: #F1F8E9;
+      --dark: #1B5E20;
+      --gray: #757575;
+      --white: #FFFFFF;
+      --danger: #F44336;
+    }
+    body {
+      font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .card {
+      background-color: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .rule-category {
+      margin-top: 25px;
+      margin-bottom: 15px;
+      color: var(--dark);
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 5px;
+    }
+    .rules-list {
+      list-style-type: none;
+      counter-reset: rule-counter;
+      padding-left: 0;
+    }
+    .rules-list li {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+    }
+    .rules-list li::before {
+      content: counter(rule-counter);
+      counter-increment: rule-counter;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    blockquote {
+      background-color: var(--light);
+      border-left: 5px solid var(--primary);
+      padding: 15px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+    /* 固定返回首頁按鈕 */
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: var(--accent);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    .back-button:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>伺服器規則</h1>
+    <div class="card">
+      <h4 class="rule-category">1. 建築規範</h4>
+      <ol class="rules-list">
+        <li>在他人建築範圍內建設前，必須獲得該地塊主的明確許可。違規者將被拆除，情節嚴重者封禁 1 至 7 天。</li>
+      </ol>
+      <h4 class="rule-category">2. 資源採集禮儀</h4>
+      <ol class="rules-list">
+        <li>公共資源地（如礦區、刷怪塔）應合理採集，避免破壞地形或遺留危險陷阱；違規者面臨 1 至 3 天封禁。</li>
+      </ol>
+      <h4 class="rule-category">3. 交易誠信</h4>
+      <ol class="rules-list">
+        <li>所有交易必須遵循雙方同意條件進行，嚴禁詐欺，違者將永久封禁並追回詐欺所得。</li>
+      </ol>
+      <h4 class="rule-category">4. 適當的言語交流</h4>
+      <ol class="rules-list">
+        <li>禁止在聊天中使用侮辱性語言、人身攻擊或其他形式的騷擾，違規者將面臨 1 至 7 天封禁。</li>
+      </ol>
+      <h4 class="rule-category">5. 公共建設參與</h4>
+      <ol class="rules-list">
+        <li>鼓勵玩家參與公共建設，但必須在管理員監督下進行；未經許可的建設將被拆除，情節嚴重者封禁。</li>
+      </ol>
+      <h4 class="rule-category">6. 反作弊機制配合</h4>
+      <ol class="rules-list">
+        <li>必須配合伺服器反作弊機制，不得規避或破壞；違者面臨 7 天至永久封禁。</li>
+      </ol>
+      <h4 class="rule-category">7. 活動規則遵守</h4>
+      <ol class="rules-list">
+        <li>參加活動時，必須遵循該活動的特定規則，違反者將根據情節給予警告或封禁。</li>
+      </ol>
+      <h4 class="rule-category">8. 犯規後行為惡劣</h4>
+      <ol class="rules-list">
+        <li>違規後若對管理員或其他玩家進行辱罵、威脅等惡劣行為，將在原處罰基礎上加重處罰，可能永久封禁。</li>
+      </ol>
+      <h4 class="rule-category">9. 重複再犯</h4>
+      <ol class="rules-list">
+        <li>封禁期滿後再次違規者，封禁時間將加倍，嚴重者可能永久封禁。</li>
+      </ol>
+      <h4 class="rule-category">10. 卡服機禁制</h4>
+      <ol class="rules-list">
+        <li>禁止利用單一或組合機械造成伺服器過載，違規者將永久封禁。</li>
+      </ol>
+      <h4 class="rule-category">11. 尊重他人財產</h4>
+      <ol class="rules-list">
+        <li>禁止未經許可取用或破壞他人物資、建築或作物；違者封禁 3 至 15 天，嚴重者封禁更長。</li>
+      </ol>
+      <h4 class="rule-category">12. 嚴禁作弊</h4>
+      <ol class="rules-list">
+        <li>禁止使用任何作弊程式（除非伺服器批准的模組），違者至少封禁一個月，嚴重者永久封禁。</li>
+      </ol>
+      <h4 class="rule-category">13. 避免濫用檢舉</h4>
+      <ol class="rules-list">
+        <li>禁止濫用檢舉系統，違者封禁 3 天。</li>
+      </ol>
+      <h4 class="rule-category">14. 維護聊天秩序</h4>
+      <ol class="rules-list">
+        <li>禁止在公共聊天室內發送大量重複或垃圾訊息，違者封禁 1 小時。</li>
+      </ol>
+      <h4 class="rule-category">15. 對玩家的不當行為</h4>
+      <ol class="rules-list">
+        <li>禁止故意殺害其他玩家或奪取物資，違者必須歸還物資，並封禁 5 至 30 天；短時間內多次則封禁更長。</li>
+      </ol>
+      <h4 class="rule-category">16. 機械設施管理</h4>
+      <ol class="rules-list">
+        <li>未正確管理放置的機械（如未關閉導致伺服器崩潰）將被視為管理不善，違者封禁 2 天。</li>
+      </ol>
+      <h4 class="rule-category">17. 寵物保護</h4>
+      <ol class="rules-list">
+        <li>禁止故意殺害或傷害他人寵物，違者封禁 3 天。</li>
+      </ol>
+      <h4 class="rule-category">18. 多重違規加重處分</h4>
+      <ol class="rules-list">
+        <li>同一案件中涉及多項違規者，封禁時間將累計或加重處罰。</li>
+      </ol>
+      <h4 class="rule-category">19. 良好態度的減刑機會</h4>
+      <ol class="rules-list">
+        <li>違規後若表現悔改與合作，可申請減刑（最多減少 20%，不超過 8 天），由管理員審核決定。</li>
+      </ol>
+      <h4 class="rule-category">20. 初犯者減刑規定</h4>
+      <ol class="rules-list">
+        <li>首次違規者可申請減少剩餘封禁時間（最多減少 30%，不超過 12 天），不得與良好態度減刑疊加。</li>
+      </ol>
+      <h4 class="rule-category">21. 利用伺服器漏洞</h4>
+      <ol class="rules-list">
+        <li>禁止利用未修復漏洞取得不正當優勢，違者封禁 7 至 30 天，嚴重者永久封禁。</li>
+      </ol>
+      <h4 class="rule-category">22. 出生點保護</h4>
+      <ol class="rules-list">
+        <li>禁止在玩家出生點附近設陷阱或攻擊新玩家，違者封禁 15 天至永久。</li>
+      </ol>
+      <h4 class="rule-category">23. 惡意指控</h4>
+      <ol class="rules-list">
+        <li>禁止無故或惡意指控他人，違者初犯警告，多次者封禁 3 至 10 天，嚴重者永久。</li>
+      </ol>
+      <h4 class="rule-category">24. 逃避封禁</h4>
+      <ol class="rules-list">
+        <li>禁止利用新帳號、改 IP 等手段逃避封禁，違者所有帳號將永久封禁並加入黑名單。</li>
+      </ol>
+      <h4 class="rule-category">25. 加入伺服器</h4>
+      <ol class="rules-list">
+        <li>加入伺服器必須通過白名單申請，請至指定頻道填寫申請表單；亂填者將不予受理。</li>
+      </ol>
+      <blockquote>
+        我們希望每位玩家都能在 3JL 伺服器中獲得愉快的遊戲體驗。這些規則旨在創造一個友善、公平、和諧的遊戲環境。感謝您的配合！
+      </blockquote>
+    </div>
+    <a href="index.html" class="back-button">返回首頁</a>
+  </div>
+</body>
+</html>
