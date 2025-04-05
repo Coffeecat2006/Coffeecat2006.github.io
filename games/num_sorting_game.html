@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>數字排序挑戰</title>
+  <link rel="stylesheet" href="num_sorting_css.css">
+</head>
+<body>
+  <div class="start-screen" id="startScreen">
+    <div class="start-content">
+      <h1>數字排序挑戰</h1>
+      <p>測試你的數學能力，依照指示將數字按照特定順序排列！</p>
+      
+      <div class="mode-selection">
+        <h3>選擇排序模式:</h3>
+        <button class="mode-btn selected" data-mode="asc">由小到大</button>
+        <button class="mode-btn" data-mode="desc">由大到小</button>
+        <button class="mode-btn" data-mode="random">隨機模式</button>
+      </div>
+      
+      <div class="settings-group">
+        <h3 class="settings-title">自定義設定</h3>
+        
+        <div class="setting-item">
+          <span class="setting-label">起始關卡:</span>
+          <input type="number" class="setting-input" id="startLevel" min="1" max="100" value="1">
+        </div>
+        
+        <div class="setting-item">
+          <span class="setting-label">心數量:</span>
+          <input type="number" class="setting-input" id="heartCount" min="1" max="10" value="3">
+        </div>
+        
+        <div class="setting-item">
+          <span class="setting-label">每關時間 (秒):</span>
+          <input type="number" class="setting-input" id="timeDuration" min="3" max="60" value="10">
+        </div>
+
+      </div>
+      
+      <button class="start-btn" id="startButton">開始遊戲</button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h1>數字排序挑戰</h1>
+    
+    <div class="game-info">
+      <div class="info-item">
+        <div>關卡</div>
+        <div class="info-value" id="level">1</div>
+      </div>
+      <div class="info-item">
+        <div>分數</div>
+        <div class="info-value" id="score">0</div>
+      </div>
+      <div class="info-item">
+        <div>遊戲時間</div>
+        <div class="info-value" id="gameTime">00:00</div>
+      </div>
+    </div>
+    
+    <div class="hearts" id="heartsContainer">
+    </div>
+    
+    <div class="order-instruction" id="orderInstruction">
+      請按照由小到大的順序點擊數字
+    </div>
+    
+    <div class="timer-container">
+      <div class="timer-bar" id="timerBar"></div>
+    </div>
+    
+    <div class="game-buttons" id="gameButtons">
+    </div>
+  </div>
+  
+  <div class="end-screen" id="endScreen" style="display: none;">
+    <div class="end-content">
+      <h1>遊戲結束</h1>
+      
+      <div class="result-item">
+        <div>總遊戲時間</div>
+        <div class="result-value" id="totalTime">00:00</div>
+      </div>
+      
+      <div class="result-item">
+        <div>最終分數</div>
+        <div class="result-value" id="finalScore">0</div>
+      </div>
+      
+      <div class="result-item">
+        <div>達到關卡</div>
+        <div class="result-value" id="finalLevel">1</div>
+      </div>
+      
+      <button class="restart-btn" id="restartButton">重新開始</button>
+    </div>
+  </div>
+  
+
+  <div class="debug-info" id="debugInfo"></div>
+  
+  <script src="num_sorting_js.js"></script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Coffeecat2006's games">
+    <title>games | Coffeecat2006</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #60a5fa;
+            --accent: #3b82f6;
+            --light-bg: #f0f9ff;
+            --light-text: #1e3a8a;
+            --light-border: #bfdbfe;
+            --light-card: #ffffff;
+            --dark-bg: #0f172a;
+            --dark-secondary: #1e293b;
+            --dark-text: #e0f2fe;
+            --dark-border: #1e40af;
+            --dark-card: #1e293b;
+            --dark-accent: #3067c0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 2.5rem 0 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        header h1 {
+            margin-bottom: 1.2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        nav {
+            background-color: rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            margin-top: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        main h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        body.dark-mode main h2 {
+            color: var(--secondary);
+        }
+        
+        main h2:after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 0.8rem auto 2rem;
+            border-radius: 2px;
+        }
+        
+        main > p {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.3rem;
+            color: var(--light-text);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        body.dark-mode main > p {
+            color: var(--dark-text);
+        }
+        
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            list-style: none;
+            perspective: 1000px;
+        }
+        
+        .game-list li {
+            background-color: var(--light-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid var(--light-border);
+        }
+        
+        body.dark-mode .game-list li {
+            background-color: var(--dark-card);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--dark-border);
+        }
+        
+        .game-list li:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+        }
+        
+        body.dark-mode .game-list li:hover {
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+        
+        .game-card-header {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
+        }
+        
+        .game-card-header .game-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .game-list li h3 {
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            font-size: 1.6rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--light-border);
+        }
+        
+        body.dark-mode .game-list li h3 {
+            color: var(--secondary);
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .game-list li p {
+            padding: 1.5rem;
+            color: var(--light-text);
+            font-size: 1.05rem;
+            height: 120px;
+            display: flex;
+            align-items: center;
+        }
+        
+        body.dark-mode .game-list li p {
+            color: var(--dark-text);
+        }
+        
+        .game-card-footer {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(191, 219, 254, 0.2);
+        }
+        
+        body.dark-mode .game-card-footer {
+            background-color: rgba(30, 58, 138, 0.3);
+        }
+        
+        .difficulty {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .difficulty span {
+            width: 12px;
+            height: 12px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        .difficulty span.active {
+            opacity: 1;
+        }
+        
+        .game-list li a {
+            display: block;
+            background-color: var(--accent);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .game-list li a:hover {
+            background-color: var(--primary);
+            letter-spacing: 2px;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        body.dark-mode footer {
+            background-color: var(--dark-secondary);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            .game-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="切換暗色模式">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+            </svg>
+        </button>
+        <h1>歡迎來到小遊戲區域</h1>
+        <nav>
+            <ul>
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">遊戲</a></li>
+                <li><a href="#">排行榜</a></li>
+                <li><a href="#">關於我們</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>探索我們的遊戲</h2>
+        <p>挑戰自我，體驗各種精心設計的遊戲！從簡單的益智遊戲到複雜的冒險，總有一款適合你。</p>
+        <ul class="game-list">
+            <li>
+                <div class="game-card-header">
+                    <div class="game-icon">🔢</div>
+                </div>
+                <h3>數字排序遊戲</h3>
+                <p>在限定時間內將數字正確排序，考驗你的邏輯思維和反應能力。適合所有年齡層的益智遊戲。</p>
+                <div class="game-card-footer">
+                    <div class="difficulty">
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                    </div>
+                    <span>難度: 中等</span>
+                </div>
+                <a href="num_sorting_game.html">立即遊玩</a>
+            </li>
+            <li>
+                <div class="game-card-header">
+                    <div class="game-icon">🏰</div>
+                </div>
+                <h3>無盡地下城</h3>
+                <p>探索隨機生成的地下城，與各種怪物戰鬥，收集寶藏，提升你的角色能力。每次探險都是全新體驗！</p>
+                <div class="game-card-footer">
+                    <div class="difficulty">
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                    </div>
+                    <span>難度: 困難</span>
+                </div>
+                <a href="inf_dungeon_game.html">立即遊玩</a>
+            </li>
+            <li>
+                <div class="game-card-header">
+                    <div class="game-icon">💣</div>
+                </div>
+                <h3>經典踩地雷</h3>
+                <p>經典的踩地雷遊戲，測試你的記憶力和推理能力。擁有多種難度等級，從新手到專家都能找到挑戰！</p>
+                <div class="game-card-footer">
+                    <div class="difficulty">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span>難度: 簡單</span>
+                </div>
+                <a href="minesweeper_game.html">立即遊玩</a>
+            </li>
+        </ul>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Coffeecat2006. 版權所有。</p>
+            <div class="footer-links">
+                <a href="#">隱私政策</a>
+                <a href="#">使用條款</a>
+                <a href="#">聯絡我們</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            // 保存用戶偏好到 localStorage
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+        
+        // 檢查用戶之前的偏好設置
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // 也可以檢查系統偏好
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            if (localStorage.getItem('darkMode') === null && prefersDarkScheme.matches) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

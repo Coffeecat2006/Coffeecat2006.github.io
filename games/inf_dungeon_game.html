@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>無限地下城</title>
+  <link rel="stylesheet" href="inf_dungeon_css.css">
+</head>
+<body>
+  <div class="container">
+    <h1>無限地下城</h1>
+    <div class="game-mode">
+      <strong>模式: </strong><span id="game-mode">無限地下城</span>
+      <button id="mode-btn">切換模式</button>
+      <button id="fullscreen-btn">全螢幕</button>
+    </div>
+    <br>
+    <div class="game-area">
+      <div class="status-area">
+        <div>
+          <strong>等級: </strong><span id="player-level">1</span>
+        </div>
+        <div>
+          <strong>經驗值: </strong><span id="player-xp">0</span>/<span id="player-next-level">100</span>
+        </div>
+        <div>
+          <strong>層數: </strong><span id="dungeon-level">1</span>
+        </div>
+      </div>
+      <div class="bars-row">
+        <div class="bar-section">
+          <strong>玩家生命值:</strong>
+          <div class="health-bar">
+            <div id="player-health-bar" class="health-fill"></div>
+          </div>
+          <span id="player-health">100</span>/<span id="player-max-health">100</span>
+        </div>
+        <div class="bar-section">
+          <strong>能量:</strong>
+          <div class="health-bar">
+            <div id="player-energy-bar" class="health-fill" style="background-color:#f1fa8c;"></div>
+          </div>
+          <span id="player-energy">100</span>/100
+        </div>
+      </div>      
+      <div class="monster-area" id="monster-area">
+        <h2 id="monster-name">準備戰鬥</h2>
+        <div id="monster-image" class="monster-image">👺</div>
+        <div>
+          <strong>怪物生命值:</strong>
+          <div class="health-bar">
+            <div id="monster-health-bar" class="health-fill monster-health-fill"></div>
+          </div>
+          <span id="monster-health">30</span>/<span id="monster-max-health">30</span>
+        </div>
+        <div class="actions">
+          <button id="attack-btn">攻擊</button>
+          <button id="skill-btn">技能</button>
+          <button id="heal-btn">治療 (3/3)</button>
+          <button id="run-btn">逃跑</button>
+        </div>
+        <br>
+        <div id="current-skill-display">當前技能: 普通技能 (消耗30能量, 造成1.8倍攻擊傷害)</div>
+      </div>
+      <div class="log" id="combat-log">
+        <p class="system">歡迎來到無限地下城！準備好面對挑戰了嗎？</p>
+      </div>
+      <div class="stats">
+        <div>
+          <strong>攻擊力:</strong> <span id="player-attack">10</span>
+          <div class="stats-bar">
+            <div id="attack-bar" class="stats-fill" style="width: 20%"></div>
+          </div>
+        </div>
+        <div>
+          <strong>防禦力:</strong> <span id="player-defense">5</span>
+          <div class="stats-bar">
+            <div id="defense-bar" class="stats-fill" style="width: 10%"></div>
+          </div>
+        </div>
+        <div>
+          <strong>擊殺數:</strong> <span id="kills">0</span>
+        </div>
+      </div>
+      <div class="equipment">
+        <h3>裝備</h3>
+        <p id="player-equipment">無</p>
+      </div>
+      <div class="highscores">
+        <h3>最高記錄</h3>
+        <ol id="highscores-list">
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div id="input-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <p id="modal-message"></p>
+      <div id="modal-options"></div>
+    </div>
+  </div>
+  <script src="inf_dungeon_js.js"></script>
+</body>
+</html>

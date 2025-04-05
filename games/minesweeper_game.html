@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>踩地雷遊戲</title>
+  <link rel="stylesheet" href="minesweeper_css.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>踩地雷遊戲</h1>
+    
+    <div class="controls">
+      <div class="settings-row">
+        <div class="size-buttons">
+          <button onclick="setSize('small')">小 (9x9)</button>
+          <button onclick="setSize('medium')">中 (16x16)</button>
+          <button onclick="setSize('large')">大 (24x16)</button>
+        </div>
+        
+        <div class="toggle-container">
+          <span>夜間模式</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+      </div>
+      
+      <div class="custom-size">
+        <label>自定義大小：</label>
+        <input type="number" id="rows" min="5" max="30" value="10" placeholder="列數">
+        <span>×</span>
+        <input type="number" id="cols" min="5" max="30" value="10" placeholder="行數">
+        <button onclick="setCustomSize()">開始遊戲</button>
+      </div>
+      
+      <div class="difficulty-display">
+        當前難度：<span id="difficulty-level" class="difficulty-label">初級</span>
+      </div>
+    </div>
+    
+    <div class="game-stats">
+      <div class="stats-item">
+        <div>剩餘地雷:</div>
+        <div><span id="mines-count">10</span></div>
+      </div>
+      <div class="stats-item">
+        <div>已用時間:</div>
+        <div><span id="timer">0</span> 秒</div>
+      </div>
+      <div class="game-controls">
+        <button id="reset-button" onclick="resetGame()">重新開始</button>
+        <button id="pause-button" onclick="togglePause()">暫停</button>
+        <button id="hint-button" onclick="giveHint()">提示 (<span id="hints-left">3</span>)</button>
+        <button onclick="showLeaderboard()">顯示排行榜</button>
+      </div>
+    </div>
+    
+    <div class="game-board-container">
+      <div class="paused-overlay" id="pause-overlay">遊戲暫停</div>
+      <div id="game-board" class="game-board"></div>
+    </div>
+  </div>
+  
+  <div id="result-modal" class="modal">
+    <div class="modal-content">
+      <h2 id="result-message"></h2>
+      <p id="result-stats"></p>
+      <div class="modal-buttons">
+        <button onclick="closeModal('result-modal')">關閉</button>
+        <button onclick="resetGame(); closeModal('result-modal');">再玩一次</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="leaderboard-modal" class="modal">
+    <div class="modal-content">
+      <h2>排行榜</h2>
+      <table class="leaderboard" id="leaderboard-table">
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>難度</th>
+            <th>時間</th>
+            <th>日期</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+        </tbody>
+      </table>
+      <div class="modal-buttons">
+        <button onclick="closeModal('leaderboard-modal')">關閉</button>
+        <button onclick="clearLeaderboard()">清除記錄</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="tutorial-modal" class="modal">
+    <div class="modal-content">
+      <h2>遊戲教學</h2>
+      <div id="tutorial-content">
+        <div id="tutorial-1" class="tutorial-page">
+          <h3>遊戲目標</h3>
+          <p>踩地雷的目標是揭露所有沒有地雷的格子，同時避免踩到地雷。</p>
+          <p>每個數字表示周圍八個格子中地雷的數量。</p>
+        </div>
+        <div id="tutorial-2" class="tutorial-page" style="display: none;">
+          <h3>遊戲操作</h3>
+          <p>左鍵點擊：揭露格子</p>
+          <p>右鍵點擊：標記旗幟/問號</p>
+          <p>雙擊數字：如果周圍的旗幟數等於數字，自動揭露周圍格子</p>
+        </div>
+        <div id="tutorial-3" class="tutorial-page" style="display: none;">
+          <h3>進階功能</h3>
+          <p>提示按鈕：每局遊戲可使用3次提示</p>
+          <p>鍵盤控制：使用方向鍵移動，空格鍵揭露，F鍵標記</p>
+        </div>
+      </div>
+      <div class="tutorial-next">
+        <span id="tutorial-page">1/3</span>
+        <button id="tutorial-prev" onclick="prevTutorialPage()" disabled>上一頁</button>
+        <button id="tutorial-next" onclick="nextTutorialPage()">下一頁</button>
+      </div>
+      <div class="modal-buttons">
+        <button onclick="closeModal('tutorial-modal')">關閉</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="help-button" onclick="showTutorial()">?</div>
+  
+  <script src="minesweeper_js.js"></script>
+</body>
+</html>
