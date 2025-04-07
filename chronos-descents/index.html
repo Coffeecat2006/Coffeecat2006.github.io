@@ -3,9 +3,564 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chronos Descent - Where every second counts... twice</title>
+    <style>
+        :root {
+            --primary: #8c52ff;
+            --secondary: #1a1a2e;
+            --accent: #ff5252;
+            --light: #f0f0f0;
+            --dark: #121212;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            width: 100%;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            overflow: hidden; /* Prevent container overflow */
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/api/placeholder/1400/500") center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Prevent animation overflow */
+        }
+        
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .hero-content {
+            z-index: 1;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .title {
+            font-size: 72px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(140, 82, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .wip-badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(140, 82, 255, 0.3);
+        }
+
+        .steam-button {
+            background-color: #1b2838;
+        }
+
+        .itch-button {
+            background-color: #fa5c5c;
+        }
+
+        .github-button {
+            background-color: #333;
+        }
+        
+        section {
+            padding: 100px 0;
+            width: 100%;
+            overflow: hidden; /* Prevent section overflow */
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: var(--primary);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            width: 100%;
+        }
+        
+        .feature-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .feature-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .gameplay-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+        
+        .gameplay-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .gameplay-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .gameplay-content {
+            padding: 20px;
+        }
+        
+        .roadmap-container {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .roadmap-item {
+            display: flex;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        
+        .roadmap-status {
+            flex: 0 0 30px;
+            margin-right: 20px;
+        }
+        
+        .status-complete {
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .status-incomplete {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+        }
+        
+        .roadmap-content {
+            flex: 1;
+        }
+        
+        .footer {
+            background-color: var(--secondary);
+            padding: 50px 0;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .social-links li {
+            margin: 0 15px;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 24px;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .time-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(140, 82, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            opacity: 0;
+            animation: pulse 4s infinite;
+            pointer-events: none; /* Prevent interaction with animation */
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 48px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    123456789
+    <header>
+        <div class="time-animation"></div>
+        <nav class="container">
+            <div class="logo">CHRONOS DESCENT</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#gameplay">Gameplay</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+        <div class="hero-content container">
+            <div class="wip-badge">STILL WORK IN PROGRESS!</div>
+            <h1 class="title">CHRONOS DESCENT</h1>
+            <p class="subtitle">A roguelike action-adventure game where time is your most powerful weapon. Master the art of time manipulation to overcome seemingly impossible challenges.</p>
+            <div class="cta-buttons">
+                <a href="https://iceice666.itch.io/chronos-descent" target="_blank" class="cta-button itch-button">Download on itch.io</a>
+                <a href="https://store.steampowered.com/app/3649000/Chronos_Descent/" target="_blank" class="cta-button steam-button">Wishlist on Steam</a>
+                <a href="https://github.com/iceice666/Chronos-Descent" target="_blank" class="cta-button github-button">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3 class="feature-title">Time Rewind Ability</h3>
+                    <p>Gain a tactical advantage by rewinding time. Dodge fatal attacks, retry missed combos, or escape tough situations with this limited-use but powerful ability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏰</div>
+                    <h3 class="feature-title">Procedural Dungeons</h3>
+                    <p>Experience unique dungeon layouts on every run with randomized room designs, enemy placements, and loot distributions for endless replayability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚔️</div>
+                    <h3 class="feature-title">Loot-Based Progression</h3>
+                    <p>Collect increasingly powerful weapons and armor with unique properties supporting diverse playstyles, from lightning-fast daggers to AOE magical weapons.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gameplay" style="background-color: var(--secondary);">
+        <div class="container">
+            <h2 class="section-title">Game Loop</h2>
+            <div class="gameplay-grid">
+                <div class="gameplay-card">
+                    <img src="../img/chronos-descents/img1.png" alt="Dungeon exploration" class="gameplay-img">
+                    <div class="gameplay-content">
+                        <h3>Enter the Dungeon</h3>
+                        <p>Begin each run with your chosen equipment and venture into a procedurally generated dungeon with unique challenges.</p>
+                    </div>
+                </div>
+                <div class="gameplay-card">
+                    <img src="../img/chronos-descents/img2.png" alt="Combat" class="gameplay-img">
+                    <div class="gameplay-content">
+                        <h3>Fast-Paced Combat</h3>
+                        <p>Face progressively difficult enemies and mini-bosses using a combat system that combines the accessibility of Minecraft Dungeons with the intensity of Hades.</p>
+                    </div>
+                </div>
+                <div class="gameplay-card">
+                    <img src="../img/chronos-descents/img3.png" alt="Time rewind" class="gameplay-img">
+                    <div class="gameplay-content">
+                        <h3>Master Time</h3>
+                        <p>Strategically use your time rewind ability to overcome seemingly impossible situations and gain the upper hand in combat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap">
+        <div class="container">
+            <h2 class="section-title">Development Roadmap</h2>
+            <div class="roadmap-container">
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-complete">✓</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Core gameplay mechanics implementation</h3>
+                        <p>The fundamental gameplay systems that drive the action-adventure experience.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-complete">✓</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Procedural dungeon generation system</h3>
+                        <p>Algorithm that creates unique, challenging, and balanced dungeon layouts for each playthrough.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-complete">✓</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Enemy AI and combat systems</h3>
+                        <p>Intelligent enemy behaviors and responsive combat interactions.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-complete">✓</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Time rewind mechanic</h3>
+                        <p>The signature gameplay feature allowing players to manipulate time to their advantage.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-incomplete"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Loot and progression systems</h3>
+                        <p>Equipment, upgrades, and character progression mechanics that reward continued play.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-incomplete"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>UI and player feedback</h3>
+                        <p>Clear, responsive interfaces and feedback systems to enhance player experience.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-incomplete"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Audio implementation</h3>
+                        <p>Sound effects, music, and atmospheric audio to enhance immersion.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-status">
+                        <div class="status-incomplete"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Polish and balancing</h3>
+                        <p>Final refinements to ensure smooth, balanced, and enjoyable gameplay.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="background-color: var(--secondary);">
+        <div class="container">
+            <h2 class="section-title">Technical Details</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3 class="feature-title">Game Engine</h3>
+                    <p>Built with the powerful and flexible Godot Engine, enabling smooth performance and robust gameplay systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3 class="feature-title">Programming</h3>
+                    <p>Developed using C# (.NET 9) for efficient and maintainable code that powers the game's complex systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🕹️</div>
+                    <h3 class="feature-title">Session Design</h3>
+                    <p>Crafted for 20-30 minute dungeon runs, perfect for both quick gaming sessions and extended play.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <ul class="social-links">
+                <li><a href="https://iceice666.itch.io/chronos-descent" target="_blank">Itch.io</a></li>
+                <li><a href="https://store.steampowered.com/app/3649000/Chronos_Descent/" target="_blank">Steam</a></li>
+                <li><a href="https://github.com/iceice666/Chronos-Descent" target="_blank">GitHub</a></li>
+            </ul>
+            <p class="copyright">© 2025 Chronos Descent. All rights reserved.</p>
+            <p>Where every second counts... twice.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Add multiple time animations but limit to prevent performance issues
+            const header = document.querySelector('header');
+            for (let i = 0; i < 2; i++) {
+                const timeAnim = document.createElement('div');
+                timeAnim.className = 'time-animation';
+                timeAnim.style.animationDelay = i * 1.5 + 's';
+                header.appendChild(timeAnim);
+            }
+        });
+    </script>
 </body>
 </html>
