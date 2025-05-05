@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺灣誠聆聽語關懷協會</title>
+    <style>
+        :root {
+            --primary: #4a90a0;
+            --primary-dark: #36747e;
+            --secondary: #f7f7f7;
+            --accent: #ffa069;
+            --accent-dark: #e87d45;
+            --text: #333333;
+            --light-text: #666666;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary), #6aacb8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #fcfcfc;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(74, 144, 160, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(74, 144, 160, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent);
+            transition: all 0.5s;
+            border-radius: 30px;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            box-shadow: 0 6px 20px rgba(232, 125, 69, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .btn:hover:before {
+            width: 100%;
+        }
+        
+        /* About Section */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        section:nth-child(odd) {
+            background-color: var(--secondary);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            background: url('/api/placeholder/600/400') center/cover no-repeat;
+            border-radius: 15px;
+            min-height: 400px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services:before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(74, 144, 160, 0.05);
+            z-index: 0;
+        }
+        
+        .services:after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255, 160, 105, 0.05);
+            z-index: 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+            top: 0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .service-content h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Branches Section */
+        .branches-map {
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .branches-map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .branch-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+        
+        .taipei { top: 25%; left: 80%; }
+        .new-taipei { top: 28%; left: 85%; }
+        .taichung { top: 45%; left: 60%; }
+        .tainan { top: 65%; left: 50%; }
+        .kaohsiung { top: 75%; left: 55%; }
+        .pingtung { top: 85%; left: 60%; }
+        .yilan { top: 32%; left: 90%; }
+        
+        .branches-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .branch-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .branch-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Team Section */
+        .team {
+            background-color: var(--secondary);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-info h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .team-info p {
+            color: var(--light-text);
+            margin-bottom: 10px;
+        }
+        
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .resource-content {
+            padding: 20px;
+        }
+        
+        .resource-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #4a7b74;
+        }
+        
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .news-date {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 0;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            
+            .nav-links a {
+                padding: 15px;
+                display: block;
+                width: 100%;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                height: 70vh;
+                margin-top: 70px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .about-image {
+                margin-top: 20px;
+            }
+            
+            .footer-content {
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-card, .branch-card, .team-member, .resource
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="Snipaste_2025-05-05_20-26-43.png" alt="協會標誌">
+                    <h1>臺灣誠聆聽語關懷協會</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">關於協會</a></li>
+                    <li><a href="#services">服務項目</a></li>
+                    <li><a href="#branches">分會據點</a></li>
+                    <li><a href="#team">專業團隊</a></li>
+                    <li><a href="#resources">資源中心</a></li>
+                    <li><a href="#news">最新消息</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
+                </ul>
+                <div class="mobile-menu">☰</div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>聆聽每一個聲音，關懷每一個表達</h2>
+                <p>臺灣誠聆聽語關懷協會致力於提升聽力健康與語言能力，為聽障者及其家庭提供全方位的支援與關懷</p>
+                <a href="#contact" class="btn">立即預約諮詢</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>關於協會</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>我們的宗旨</h3>
+                    <p>聽語關懷協會的成立宗旨是以關懷、支援與教育為核心價值，致力於提升聽力健康與語言能力，以實踐社會永續發展的目標。我們旨在透過各項專業服務，包括聽力篩檢、語言治療和心理支持，為聽障者及其家庭提供全方位的支援與關懷。同時，透過宣導活動和社區教育，我們致力於提高公眾對聽力健康和語言發展的認識，促進社會的共融與理解。</p>
+                    <br>
+                    <h3>我們的歷史</h3>
+                    <p><範例文字>臺灣誠聆聽語關懷協會成立於2015年，由一群熱心的語言治療師、聽力師及家長共同發起。在過去的十年中，我們已經幫助超過5,000個家庭，並在全國設立了7個分會，致力於將專業服務擴展到更多需要幫助的人群。</範例文字></p>
+                    <br>
+                    <h3>我們的願景</h3>
+                    <p><範例文字>我們期望成為臺灣聽語健康領域的領導者，推動政策改革，提高公眾認知，並確保每個人都能獲得高品質的聽語健康服務。我們相信，透過專業的協助和社會的理解，每個人都能充分發揮其溝通潛能。</範例文字></p>
+                </div>
+                <img class="about-image" src="Snipaste_2025-05-05_20-26-43.png"></img>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>服務項目</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="../img/no texture.png" alt="聽力篩檢">
+                    <div class="service-content">
+                        <h3>聽力篩檢</h3>
+                        <p><範例文字>我們提供專業的聽力篩檢服務，適用於各年齡層。透過先進的設備和專業評估，我們能夠及早發現潛在的聽力問題，並提供適當的後續建議。</範例文字></p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="../img/no texture.png" alt="語言治療">
+                    <div class="service-content">
+                        <h3>語言治療</h3>
+                        <p><範例文字>我們的語言治療服務針對各種語言和溝通障礙提供個別化的治療計劃，包括發音、流暢度、聲音、語言理解和表達等方面的問題。</範例文字></p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="../img/no texture.png" alt="家庭支持">
+                    <div class="service-content">
+                        <h3>家庭支持計劃</h3>
+                        <p><範例文字>我們理解支持系統對聽障者的重要性。我們的家庭支持計劃提供諮詢、教育和資源，協助家庭成員理解並參與到治療過程中。</範例文字></p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="../img/no texture.png" alt="社區教育">
+                    <div class="service-content">
+                        <h3>社區教育</h3>
+                        <p><範例文字>我們定期舉辦講座、工作坊和社區活動，提高公眾對聽力健康和語言發展的認識，促進對聽障者的理解和接納。</範例文字></p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="../img/no texture.png" alt="專業培訓">
+                    <div class="service-content">
+                        <h3>專業培訓</h3>
+                        <p><範例文字>我們為教師、醫護人員和其他專業人士提供培訓，增強他們在工作中識別和支持溝通障礙的能力。</範例文字></p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="../img/no texture.png" alt="輔具提供">
+                    <div class="service-content">
+                        <h3>輔具諮詢與提供</h3>
+                        <p><範例文字>我們提供關於各種聽力輔具和替代溝通系統的諮詢服務，幫助聽障者選擇最適合的輔助工具。</範例文字></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Branches Section -->
+    <section id="branches">
+        <div class="container">
+            <div class="section-title">
+                <h2>分會據點</h2>
+            </div>
+            <div class="branches-map">
+                <img src="Snipaste_2025-05-05_20-22-53.png" alt="台灣地圖">
+                <div class="branch-marker taipei" title="台北市分會"></div>
+                <div class="branch-marker new-taipei" title="新北市分會"></div>
+                <div class="branch-marker taichung" title="台中市分會"></div>
+                <div class="branch-marker tainan" title="台南市分會"></div>
+                <div class="branch-marker kaohsiung" title="高雄市分會"></div>
+                <div class="branch-marker pingtung" title="屏東縣分會"></div>
+                <div class="branch-marker yilan" title="宜蘭縣分會"></div>
+            </div>
+            <div class="branches-list">
+                <div class="branch-card">
+                    <h3>台北市分會</h3>
+                    <p><範例文字>地址：台北市大安區和平東路二段134號</範例文字></p>
+                    <p><範例文字>電話：02-2369-8765</範例文字></p>
+                    <p><範例文字>營業時間：週一至週五 9:00-18:00</範例文字></p>
+                </div>
+                <div class="branch-card">
+                    <h3>新北市分會</h3>
+                    <p><範例文字>地址：新北市板橋區中山路一段158號</範例文字></p>
+                    <p><範例文字>電話：02-2956-7890</範例文字></p>
+                    <p><範例文字>營業時間：週一至週五 9:00-18:00</範例文字></p>
+                </div>
+                <div class="branch-card">
+                    <h3>台中市分會</h3>
+                    <p><範例文字>地址：台中市西區民生路368號</範例文字></p>
+                    <p><範例文字>電話：04-2326-5432</範例文字></p>
+                    <p><範例文字>營業時間：週一至週五 9:00-18:00</範例文字></p>
+                </div>
+                <div class="branch-card">
+                    <h3>台南市分會</h3>
+                    <p><範例文字>地址：台南市東區大學路一段89號</範例文字></p>
+                    <p><範例文字>電話：06-2757-8901</範例文字></p>
+                    <p><範例文字>營業時間：週一至週五 9:00-18:00</範例文字></p>
+                </div>
+                <div class="branch-card">
+                    <h3>高雄市分會</h3>
+                    <p><範例文字>地址：高雄市前金區中正四路211號</範例文字></p>
+                    <p><範例文字>電話：07-2851-2345</範例文字></p>
+                    <p><範例文字>營業時間：週一至週五 9:00-18:00</範例文字></p>
+                </div>
+                <div class="branch-card">
+                    <h3>屏東縣分會</h3>
+                    <p><範例文字>地址：屏東市民生路99號</範例文字></p>
+                    <p><範例文字>電話：08-7326-7890</範例文字></p>
+                    <p><範例文字>營業時間：週一至週五 9:00-18:00</範例文字></p>
+                </div>
+                <div class="branch-card">
+                    <h3>宜蘭縣分會</h3>
+                    <p><範例文字>地址：宜蘭市中山路二段123號</範例文字></p>
+                    <p><範例文字>電話：03-9367-8901</範例文字></p>
+                    <p><範例文字>營業時間：週一至週五 9:00-18:00</範例文字></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>專業團隊</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="../img/no texture.png" alt="理事長">
+                    <div class="team-info">
+                        <h3><範例文字>???</範例文字></h3>
+                        <p>理事長</p>
+                        <p><範例文字>資深語言治療師，擁有20年臨床經驗，專長於兒童語言發展障礙</範例文字></p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="../img/no texture.png" alt="秘書長">
+                    <div class="team-info">
+                        <h3><範例文字>???</範例文字></h3>
+                        <p>秘書長</p>
+                        <p><範例文字>聽力學博士，曾任多家醫學中心聽力科主任，專長於成人聽力障礙評估與治療</範例文字></p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="../img/no texture.png" alt="資深語言治療師">
+                    <div class="team-info">
+                        <h3><範例文字>???</範例文字></h3>
+                        <p>資深語言治療師</p>
+                        <p><範例文字>專長於吞嚥障礙及成人語言障礙，擁有15年臨床經驗</範例文字></p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="../img/no texture.png" alt="資深聽力師">
+                    <div class="team-info">
+                        <h3><範例文字>???</範例文字></h3>
+                        <p>資深聽力師</p>
+                        <p><範例文字>專長於兒童聽力評估及聽力輔具諮詢與配置</範例文字></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Resources Section -->
+    <section id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>資源中心</h2>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <img src="../img/no texture.png" alt="教育資源">
+                    <div class="resource-content">
+                        <h3>教育資源</h3>
+                        <p><範例文字>我們提供各種教育資源，包括教材、工作紙和指引，協助家長和教師支持有溝通障礙的兒童。</範例文字></p>
+                        <a href="#" class="btn">瀏覽資源</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <img src="../img/no texture.png" alt="研究出版">
+                    <div class="resource-content">
+                        <h3>研究出版</h3>
+                        <p><範例文字>查看我們的研究成果和出版物，了解聽力健康和語言發展的最新研究進展。</範例文字></p>
+                        <a href="#" class="btn">查看出版物</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <img src="../img/no texture.png" alt="影片教學">
+                    <div class="resource-content">
+                        <h3>影片教學</h3>
+                        <p><範例文字>觀看我們的教學影片，學習如何在家中進行語言訓練活動和聽力保健。</範例文字></p>
+                        <a href="#" class="btn">觀看影片</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- News Section -->
+    <section id="news" class="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>最新消息</h2>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="../img/no texture.png" alt="最新消息1">
+                    <div class="news-content">
+                        <span class="news-date">2025年4月15日</span>
+                        <h3><範例文字>全國聽力健康週即將展開</範例文字></h3>
+                        <p><範例文字>我們將於下月舉辦年度聽力健康週活動，提供免費聽力篩檢和聽力健康講座，歡迎民眾踴躍參加。</範例文字></p>
+                        <a href="#" class="btn">閱讀更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="../img/no texture.png" alt="最新消息2">
+                    <div class="news-content">
+                        <span class="news-date">2025年3月28日</span>
+                        <h3><範例文字>協會與教育部合作推出新教材</範例文字></h3>
+                        <p><範例文字>我們與教育部合作開發的語言發展評估工具已正式推出，將幫助教師更早識別有語言發展遲緩的學童。</範例文字></p>
+                        <a href="#" class="btn">閱讀更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="../img/no texture.png" alt="最新消息3">
+                    <div class="news-content">
+                        <span class="news-date">2025年3月10日</span>
+                        <h3><範例文字>新分會成立計畫</範例文字></h3>
+                        <p><範例文字>為了服務更多需要協助的家庭，我們計劃於今年年底前在花蓮和台東成立新的分會。</範例文字></p>
+                        <a href="#" class="btn">閱讀更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>聯絡我們</h2>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">電子郵件</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">聯絡電話</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="branch">希望聯繫的分會</label>
+                        <select id="branch" name="branch">
+                            <option value="">請選擇</option>
+                            <option value="taipei">台北市分會</option>
+                            <option value="new-taipei">新北市分會</option>
+                            <option value="taichung">台中市分會</option>
+                            <option value="tainan">台南市分會</option>
+                            <option value="kaohsiung">高雄市分會</option>
+                            <option value="pingtung">屏東縣分會</option>
+                            <option value="yilan">宜蘭縣分會</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">諮詢服務</label>
+                        <select id="service" name="service">
+                            <option value="">請選擇</option>
+                            <option value="hearing">聽力篩檢</option>
+                            <option value="speech">語言治療</option>
+                            <option value="family">家庭支持計劃</option>
+                            <option value="training">專業培訓</option>
+                            <option value="devices">輔具諮詢</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">送出表單</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>關於我們</h3>
+                    <p>臺灣誠聆聽語關懷協會致力於提升聽力健康與語言能力，為聽障者及其家庭提供全方位的支援與關懷。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速連結</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">關於協會</a></li>
+                        <li><a href="#services">服務項目</a></li>
+                        <li><a href="#branches">分會據點</a></li>
+                        <li><a href="#team">專業團隊</a></li>
+                        <li><a href="#resources">資源中心</a></li>
+                        <li><a href="#news">最新消息</a></li>
+                        <li><a href="#contact">聯絡我們</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>聯絡資訊</h3>
+                    <p>總會地址：<範例文字>台北市大安區和平東路二段134號</範例文字></p>
+                    <p>電話：<範例文字>02-2369-8765</範例文字></p>
+                    <p>Email：<範例文字>info@tlsca.org.tw</範例文字></p>
+                </div>
+                <div class="footer-column">
+                    <h3>關注我們</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">YT</a>
+                        <a href="#">LINE</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 臺灣誠聆聽語關懷協會. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 簡單的手機選單切換功能
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '80px';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'white';
+                navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                navLinks.style.padding = '20px';
+            }
+        });
+
+        // 視窗大小改變時重設選單
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.position = 'static';
+                navLinks.style.width = 'auto';
+                navLinks.style.backgroundColor = 'transparent';
+                navLinks.style.boxShadow = 'none';
+                navLinks.style.padding = '0';
+            }
+        });
+    </script>
+</body>
+</html>
